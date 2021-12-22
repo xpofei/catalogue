@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/microservices-demo/catalogue.svg?branch=master)](https://travis-ci.org/microservices-demo/catalogue) 
-[![Coverage Status](https://coveralls.io/repos/github/microservices-demo/catalogue/badge.svg?branch=master)](https://coveralls.io/github/microservices-demo/catalogue?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/microservices-demo/catalogue)](https://goreportcard.com/report/github.com/microservices-demo/catalogue)
+[![Build Status](https://travis-ci.org/xpofei/catalogue.svg?branch=master)](https://travis-ci.org/xpofei/catalogue) 
+[![Coverage Status](https://coveralls.io/repos/github/xpofei/catalogue/badge.svg?branch=master)](https://coveralls.io/github/xpofei/catalogue?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/xpofei/catalogue)](https://goreportcard.com/report/github.com/xpofei/catalogue)
 [![Microbadger](https://images.microbadger.com/badges/image/weaveworksdemos/catalogue.svg)](http://microbadger.com/images/weaveworksdemos/catalogue "Get your own image badge on microbadger.com")
 
 
@@ -14,7 +14,7 @@ We'd love to see community contributions. We like to keep it simple and use Gith
 
 ### API Spec
 
-Checkout the API Spec [here](http://microservices-demo.github.io/api/index?url=https://raw.githubusercontent.com/microservices-demo/catalogue/master/api-spec/catalogue.json)
+Checkout the API Spec [here](http://microservices-demo.github.io/api/index?url=https://raw.githubusercontent.com/xpofei/catalogue/master/api-spec/catalogue.json)
 
 
 ### To build this service
@@ -27,10 +27,10 @@ gvt restore
 
 #### Go tools
 In order to build the project locally you need to make sure that the repository directory is located in the correct
-$GOPATH directory: $GOPATH/src/github.com/microservices-demo/catalogue/. Once that is in place you can build by running:
+$GOPATH directory: $GOPATH/src/github.com/xpofei/catalogue/. Once that is in place you can build by running:
 
 ```
-cd $GOPATH/src/github.com/microservices-demo/catalogue/cmd/cataloguesvc/
+cd $GOPATH/src/github.com/xpofei/catalogue/cmd/cataloguesvc/
 go build -o catalogue
 ```
 
@@ -43,7 +43,7 @@ The result is a binary named `catalogue`, in the current directory.
 
 #### Go native
 
-If you followed to Go build instructions, you should have a "catalogue" binary in $GOPATH/src/github.com/microservices-demo/catalogue/cmd/cataloguesvc/.
+If you followed to Go build instructions, you should have a "catalogue" binary in $GOPATH/src/github.com/xpofei/catalogue/cmd/cataloguesvc/.
 To run it use:
 ```
 ./catalogue

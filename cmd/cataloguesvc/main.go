@@ -5,12 +5,10 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
-	"strings"
 	"syscall"
 
 	"github.com/go-kit/kit/log"
 	stdopentracing "github.com/opentracing/opentracing-go"
-	zipkin "github.com/openzipkin/zipkin-go-opentracing"
 
 	"net"
 	"net/http"
@@ -19,9 +17,9 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
-	"github.com/microservices-demo/catalogue"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/weaveworks/common/middleware"
+	"github.com/xpofei/catalogue"
 	"golang.org/x/net/context"
 )
 
@@ -66,8 +64,8 @@ func main() {
 	var logger log.Logger
 	{
 		logger = log.NewLogfmtLogger(os.Stderr)
-		logger = log.NewContext(logger).With("ts", log.DefaultTimestampUTC)
-		logger = log.NewContext(logger).With("caller", log.DefaultCaller)
+		log.With(logger, "ts", log.DefaultTimestampUTC)
+		log.With(logger, "caller", log.DefaultCaller)
 	}
 
 	var tracer stdopentracing.Tracer
@@ -81,22 +79,13 @@ func main() {
 				logger.Log("err", err)
 				os.Exit(1)
 			}
-			localAddr := conn.LocalAddr().(*net.UDPAddr)
-			host := strings.Split(localAddr.String(), ":")[0]
 			defer conn.Close()
-			logger := log.NewContext(logger).With("tracer", "Zipkin")
+			logger := log.With(logger, "tracer", "Zipkin")
 			logger.Log("addr", zip)
-			collector, err := zipkin.NewHTTPCollector(
-				*zip,
-				zipkin.HTTPLogger(logger),
-			)
 			if err != nil {
 				logger.Log("err", err)
 				os.Exit(1)
 			}
-			tracer, err = zipkin.NewTracer(
-				zipkin.NewRecorder(collector, false, fmt.Sprintf("%v:%v", host, port), ServiceName),
-			)
 			if err != nil {
 				logger.Log("err", err)
 				os.Exit(1)

@@ -1,11 +1,10 @@
-FROM cr-cn-beijing.volces.com/weaveworksdemos/golang:1.7-gvt
+FROM cr-cn-beijing.volces.com/weaveworksdemos/golang:1.16
 
-COPY . /go/src/github.com/microservices-demo/catalogue
-WORKDIR /go/src/github.com/microservices-demo/catalogue
+COPY . /go/src/github.com/xpofei/catalogue
+WORKDIR /go/src/github.com/xpofei/catalogue
 
 ENV GOPROXY https://goproxy.cn,direct
-RUN gvt restore && \
-    CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /app github.com/microservices-demo/catalogue/cmd/cataloguesvc
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /app github.com/xpofei/catalogue/cmd/cataloguesvc
 
 FROM cr-cn-beijing.volces.com/weaveworksdemos/alpine:3.4
 
@@ -35,8 +34,8 @@ LABEL org.label-schema.vendor="Weaveworks" \
   org.label-schema.version="${BUILD_VERSION}" \
   org.label-schema.name="Socks Shop: Catalogue" \
   org.label-schema.description="REST API for Catalogue service" \
-  org.label-schema.url="https://github.com/microservices-demo/catalogue" \
-  org.label-schema.vcs-url="github.com:microservices-demo/catalogue.git" \
+  org.label-schema.url="https://github.com/xpofei/catalogue" \
+  org.label-schema.vcs-url="github.com:xpofei/catalogue.git" \
   org.label-schema.vcs-ref="${COMMIT}" \
   org.label-schema.schema-version="1.0"
 
