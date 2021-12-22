@@ -1,4 +1,4 @@
-FROM golang:1.7
+FROM cr-cn-beijing.volces.com/weaveworksdemos/golang:1.7
 
 COPY . /go/src/github.com/microservices-demo/catalogue
 WORKDIR /go/src/github.com/microservices-demo/catalogue
@@ -7,7 +7,7 @@ RUN go get -u github.com/FiloSottile/gvt
 RUN gvt restore && \
     CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /app github.com/microservices-demo/catalogue/cmd/cataloguesvc
 
-FROM alpine:3.4
+FROM cr-cn-beijing.volces.com/weaveworksdemos/alpine:3.4
 
 ENV	SERVICE_USER=myuser \
 	SERVICE_UID=10001 \
