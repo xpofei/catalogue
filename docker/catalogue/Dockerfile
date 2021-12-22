@@ -3,6 +3,7 @@ FROM cr-cn-beijing.volces.com/weaveworksdemos/golang:1.7-gvt
 COPY . /go/src/github.com/microservices-demo/catalogue
 WORKDIR /go/src/github.com/microservices-demo/catalogue
 
+ENV GOPROXY https://goproxy.cn,direct
 RUN gvt restore && \
     CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /app github.com/microservices-demo/catalogue/cmd/cataloguesvc
 
